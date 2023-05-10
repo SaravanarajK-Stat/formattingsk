@@ -1,9 +1,8 @@
 Package: formattingsk
 Type: Simple inhouse package
 Title: Formatting date and time
-Version: 0.1.0
+Version: 0.1.1
 Author: Saravanaraj K
-Maintainer: saravanarajkaruppasamy@gmail.com
+Maintainer: Saravanaraj K <saravanarajkaruppasamy@gmail.com>
 Description: The package doing formatting and find the missing fields
-Encoding: UTF-8
-LazyData: true
+
