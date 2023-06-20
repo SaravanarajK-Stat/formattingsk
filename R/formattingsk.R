@@ -1,4 +1,3 @@
-
 require(dplyr)
 require(lubridate)
 
@@ -59,4 +58,4 @@ missing_fields <- function (.data)
     mutate(Variables=substr(Variables,1,(nchar(Variables)-3)))
   return(df.return_1)
 }
-#Version updated
+
