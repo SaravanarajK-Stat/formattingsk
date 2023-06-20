@@ -21,18 +21,27 @@ non_sputum_coll <- function(na,nc,dt){
 }
 
 formatting_dt <- function(tm,ampm,dt){
-  y=factor(y, levels = c(1,2), labels = c("AM","PM"))
-  x_1=format(strptime(paste(substr(x,1,5), y, sep=" "),
+  ampm=factor(ampm, levels = c(1,2), labels = c("AM","PM"))
+  x_1=format(strptime(paste(substr(tm,1,5), ampm, sep=" "),
                       format = "%I:%M %p"), format = "%H:%M")
-  return(noquote(ymd_hm(z, x_1)))
+  dt=ymd(dt)
+  format="%Y-%m-%d %H:%M"
+  y_dt_tm=as.POSIXct(paste(dt, x_1), format=format)
+  y_dt_tm_1=substr(y_dt_tm,1,16)
+  return(y_dt_tm_1)
 }
 
 formatting_dt_1 <- function(tm,ampm,dt){
-  y=factor(y, levels = c(1,2), labels = c("AM","PM"))
-  x_1=format(strptime(paste(substr(x,1,5), y, sep=" "),
+  ampm=factor(ampm, levels = c(1,2), labels = c("AM","PM"))
+  x_1=format(strptime(paste(substr(tm,1,5), ampm, sep=" "),
                       format = "%I:%M %p"), format = "%H:%M")
-  return(noquote(ymd_hm(z, x_1)))
+  dt=dmy(dt)
+  format="%Y-%m-%d %H:%M"
+  y_dt_tm=as.POSIXct(paste(dt, x_1), format=format)
+  y_dt_tm_1=substr(y_dt_tm,1,16)
+  return(y_dt_tm_1)
 }
+
 
 missing_fields <- function (.data)
 {
