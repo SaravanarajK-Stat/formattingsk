@@ -59,4 +59,7 @@ missing_fields <- function (.data)
   return(df.return_1)
 }
 
-#Version updated
+dt_tm_diff <- function(coll_dt_tm, recv_dt_tm){
+  x_1=as.numeric(difftime(recv_dt_tm,coll_dt_tm,units = "mins"))
+  return(x_1)
+}
