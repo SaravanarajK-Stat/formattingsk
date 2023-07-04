@@ -59,4 +59,20 @@ missing_fields <- function (.data)
   return(df.return_1)
 }
 
-#Version updated
+dt_tm_diff <- function(coll_dt_tm, recv_dt_tm){
+  x_1=as.numeric(difftime(recv_dt_tm,coll_dt_tm,units = "mins"))
+  return(x_1)
+}
+
+run_source <- function(path){
+  runlist=list.files(path, pattern = ".R")
+  lapply(as.list(runlist), source)
+}
+
+read_allsheets_sk <- function(filename, tibble = TRUE) {
+  sheets <- readxl::excel_sheets(filename)
+  x <- lapply(sheets, function(X) readxl::read_excel(filename, sheet = X))
+  if(!tibble) x <- lapply(x, as.data.frame)
+  names(x) <- sheets
+  unlist(x)
+}
