@@ -30,3 +30,5 @@ fp_date <- function(dt, tm){
 row_bind_sk <- function(data_a,data_b,data_c){
   x_1=data.table::rbindlist(list(data_a,data_b,data_c),fill = TRUE)
 }
+
+

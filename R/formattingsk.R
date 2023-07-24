@@ -1,5 +1,6 @@
 require(dplyr)
 require(lubridate)
+require(data.table)
 
 formatting_tm <- function(x,y){
   y=factor(y, levels = c(1,2), labels = c("AM","PM"))
