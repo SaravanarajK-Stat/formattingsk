@@ -1,6 +1,7 @@
 require(dplyr)
 require(lubridate)
 require(data.table)
+require(tidyverse)
 
 formatting_tm <- function(x,y){
   y=factor(y, levels = c(1,2), labels = c("AM","PM"))
@@ -47,6 +48,23 @@ missing_fields <- function (.data)
 {
   df.in=.data
   df.in_1=df.in[1:4]
+  df.out = df.in  %>% is.na() %>%
+    data.frame() %>%
+    dplyr::mutate_all(factor,
+                      levels = c("FALSE", "TRUE"), labels = c("", "Miss"))
+  names(df.out) = paste0(names(df.out), "_na")
+  df.return = cbind(df.in_1,df.out)
+  df.return_1=df.return %>%
+    pivot_longer(cols = ends_with("_na"), names_to = "Variables", values_to = "Error",
+                 values_drop_na = TRUE) %>%
+    mutate(Variables=substr(Variables,1,(nchar(Variables)-3)))
+  return(df.return_1)
+}
+
+missing_fields_all <- function (.data)
+{
+  df.in=.data
+  df.in_1=df.in[1]
   df.out = df.in  %>% is.na() %>%
     data.frame() %>%
     dplyr::mutate_all(factor,
